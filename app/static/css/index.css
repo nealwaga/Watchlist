@@ -1,0 +1,37 @@
+body {
+    background-color: rgb(8, 8, 8);
+}
+
+ul {
+    list-style-type: none;
+}
+
+.movie-card a {
+    color: green;
+}
+
+.movie-card a:hover {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(238, 241, 238);
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.btn {
+    font-size: 20px;
+}
+
+.form-control {
+    height: 50px;
+    border-radius: 10px;
+}
+
+.form {
+    background: #1DAFDE;
+}
