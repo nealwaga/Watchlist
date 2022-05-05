@@ -1,5 +1,6 @@
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
+from flask_login import UserMixin
 
 class Movie:
     '''
@@ -46,12 +47,14 @@ class Review:
         return response
 
 
-class User(db.Model): #Passed in db.Model as an argument that connects our class to the database and allow communication
+class User(UserMixin, db.Model): #Passed in db.Model as an argument that connects our class to the database and allow communication
     __tablename__ = 'users' #__tablename__ variable allows us to give the tables in our database proper names
 
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(255)) #db.String class specifies the data in that column should be a string with a maximum of 255 characters
+    username = db.Column(db.String(255), index = True) #db.String class specifies the data in that column should be a string with a maximum of 255 characters
+    email = db.Column(db.String(255),unique = True,index = True)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    password_hash = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     @property
     def password(self):
