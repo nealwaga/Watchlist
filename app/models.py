@@ -45,10 +45,10 @@ class Review:
         return response
 
 
-class User(db.Model):
-    __tablename__ = 'users'
+class User(db.Model): #Passed in db.Model as an argument that connects our class to the database and allow communication
+    __tablename__ = 'users' #__tablename__ variable allows us to give the tables in our database proper names
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(255))
+    username = db.Column(db.String(255)) #db.String class specifies the data in that column should be a string with a maximum of 255 characters
 
-    def __repr__(self):
+    def __repr__(self): #__repr__method is not really important. It makes it easier to debug our applications
         return f'User {self.username}'
