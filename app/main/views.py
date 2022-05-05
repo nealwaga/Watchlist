@@ -13,8 +13,11 @@ from ..models import Review
 from flask_login import login_required
 
 # Views
-@main.route('/')
-def index():
+@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_review(id):
+
+ def index():
 
     '''
     View root page function that returns the index page and its data
