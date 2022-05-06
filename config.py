@@ -10,6 +10,8 @@ class Config:
 #Location of the database with authentication   
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://neal:Wneal9.@localhost/watchlist'
 
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
+
     
 class ProdConfig(Config):
     '''
