@@ -56,6 +56,7 @@ def search(movie_name):
 
 
 @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
 def new_review(id):
     form = ReviewForm()
     movie = get_movie(id)
@@ -71,13 +72,13 @@ def new_review(id):
     return render_template('new_review.html',title = title, review_form=form, movie=movie)
 
 
-@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-@login_required
-def new_review(id):
+#@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+#@login_required
+#def new_review(id):
 
 
- @main.route('/user/<uname>')
- def profile(uname):
+@main.route('/user/<uname>')
+def profile(uname):
     user = User.query.filter_by(username = uname).first()
 
     if user is None:
