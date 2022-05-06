@@ -6,12 +6,10 @@ from .. import db
 from ..models import Review, User
 from flask_login import login_required
 
-# Views
-@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-@login_required
-def new_review(id):
 
- def index():
+# Views
+@main.route('/')
+def index():
 
     '''
     View root page function that returns the index page and its data
@@ -56,6 +54,7 @@ def search(movie_name):
     title = f'search results for {movie_name}'
     return render_template('search.html',movies = searched_movies)
 
+
 @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
 def new_review(id):
     form = ReviewForm()
@@ -72,16 +71,21 @@ def new_review(id):
     return render_template('new_review.html',title = title, review_form=form, movie=movie)
 
 
-@main.route('/user/<uname>')
-def profile(uname):
+@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_review(id):
+
+
+ @main.route('/user/<uname>')
+ def profile(uname):
     user = User.query.filter_by(username = uname).first()
 
     if user is None:
         abort(404)
 
     return render_template("profile/profile.html", user = user)
-
-
+    
+    
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
