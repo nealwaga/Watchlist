@@ -1,5 +1,6 @@
 import unittest
-from app.models import Review
+from app.models import Review, User
+from app import db
 
 class ReviewTest(unittest.TestCase):
     '''
