@@ -64,6 +64,7 @@ class User(UserMixin, db.Model): #Passed in db.Model as an argument that connect
     profile_pic_path = db.Column(db.String())
     #password_hash = db.Column(db.String(255))
     password_secure = db.Column(db.String(255))
+    reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
     @property
     def password(self):
             raise AttributeError('You cannot read the password attribute')
@@ -103,3 +104,12 @@ class Review(db.Model):
     movie_review = db.Column(db.String)
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_reviews(cls,id):
+        reviews = Review.query.filter_by(movie_id=id).all()
+        return reviews
