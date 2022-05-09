@@ -10,7 +10,6 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     #Location of the database with authentication   
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://neal:Wneal9.@localhost/watchlist'
-
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
     #Email configurations
