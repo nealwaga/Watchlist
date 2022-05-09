@@ -2,20 +2,18 @@ from flask import render_template,request,redirect,url_for, abort
 from . import main
 from ..requests import get_movies,get_movie,search_movie
 from .forms import ReviewForm, UpdateProfile
-from .. import db,photos
+from .. import db,photos #When saving profile info changes to the database.
 from ..models import Review, User
 from flask_login import login_required, current_user
 import markdown2 #Converting markdown to HTML
 
 
-# Views
+#Views
 @main.route('/')
 def index():
-
     '''
     View root page function that returns the index page and its data
     '''
-
     # Getting popular movie
     popular_movies = get_movies('popular')
     upcoming_movie = get_movies('upcoming')
@@ -33,7 +31,6 @@ def index():
 
 @main.route('/movie/<int:id>')
 def movie(id):
-
     '''
     View movie page function that returns the movie details page and its data
     '''
@@ -76,11 +73,6 @@ def new_review(id):
     return render_template('new_review.html',title = title, review_form=form, movie=movie)
 
 
-#@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-#@login_required
-#def new_review(id):
-
-
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
@@ -121,6 +113,7 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
 
 @main.route('/review/<int:id>')
 def single_review(id):
